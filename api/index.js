@@ -1,19 +1,6 @@
-const express = require('express');
+const Server = require('./src/models/server');
 require('dotenv').config();
-const { PORT } = process.env; 
 
-const app = express();
-//
-app.get('/', (req, res)=>{
-    res.send('Hello world');
-});
+const server = new Server();
 
-app.get('*', (req, res)=>{
-    res.send('404 | Page not found');
-})
-
-
-
-app.listen(PORT, ()=>{
-    console.log(`Server listening on port ${PORT}`);
-});
+server.listen();
