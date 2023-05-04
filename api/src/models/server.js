@@ -6,7 +6,7 @@ const usersRouter = require('../routes/user-routes');
 class Server {
     constructor(){
         this.app = express();
-        this.PORT = process.env.PORT;
+        this.PORT = process.env.PORT || 3001;
         this.usersPath = '/api/users';
         
         //Middlewares
