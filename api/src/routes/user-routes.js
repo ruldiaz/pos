@@ -27,7 +27,11 @@ usersRouter.post('/', [
     validateFields
 ], usersPostController);
 
-usersRouter.delete('/', usersDeleteController);
+usersRouter.delete('/:id', [
+    check('id', 'id not valid').isMongoId(),
+    check('id').custom( userIdExists ),
+    validateFields
+], usersDeleteController);
 
 
 module.exports = usersRouter;
