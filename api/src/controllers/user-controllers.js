@@ -11,11 +11,23 @@ const usersGetController = (req, res = response )=>{
     });
 };
 
-const usersPutController = (req, res = response )=>{
+const usersPutController = async (req, res = response )=>{
+
     const id = req.params.id;
+    const { _id, password, google, email, ...rest } = req.body;
+
+    // validate id in db
+    if( password ){
+        // encrypt password
+        const salt = bcryptjs.genSaltSync();
+        rest.password = bcryptjs.hashSync(password, salt);
+    }
+
+    const user = await User.findByIdAndUpdate( id, rest );
+
+
     res.status(200).json({
-        msg: 'put API controller',
-        id
+        user
     });
 };
 
@@ -24,14 +36,6 @@ const usersPostController = async (req, res = response )=>{
 
     const { name, email, password, role } = req.body;
     const user = new User( { name, email, password, role } );
-
-    // verify if email exists
-    const emailExists = await User.findOne({ email: email });
-    if( emailExists ){
-        return res.status(400).json({
-            msg: 'The email already exists.'
-        });
-    }
 
     // encrypt password
     const salt = bcryptjs.genSaltSync();
