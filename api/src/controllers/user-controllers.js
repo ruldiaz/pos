@@ -55,10 +55,13 @@ const usersPostController = async (req, res = response )=>{
     });
 };
 
-const usersDeleteController = (req, res)=>{
-    res.status(200).json({
-        msg: 'delete API controller'
-    });
+const usersDeleteController = async (req, res)=>{
+
+    const { id } = req.params;
+
+    const deletedUser = await User.findByIdAndUpdate( id, { status: false });
+
+    res.status(200).json( deletedUser );
 };
 
 module.exports = {
