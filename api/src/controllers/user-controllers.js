@@ -3,12 +3,20 @@ const User = require('../database/model/user');
 const bcryptjs = require('bcryptjs');
 
 
-const usersGetController = (req, res = response )=>{
-    const { nombre } = req.query;
-    res.status(200).json({
-        msg: 'get API controller',
-        nombre
-    });
+const usersGetController = async (req, res = response )=>{
+    
+    const { limit = 5, from = 0 } = req.query;
+    const onlyTrue = { status: true };
+
+    const [ total, users ] = await Promise.all([
+        User.countDocuments( onlyTrue ),
+        User.find( onlyTrue ).skip(Number(from)).limit(Number(limit))
+    ]);
+
+    res.status(200).json({ 
+        total,
+        users
+     });
 };
 
 const usersPutController = async (req, res = response )=>{
@@ -26,9 +34,7 @@ const usersPutController = async (req, res = response )=>{
     const user = await User.findByIdAndUpdate( id, rest );
 
 
-    res.status(200).json({
-        user
-    });
+    res.status(200).json(user);
 };
 
 const usersPostController = async (req, res = response )=>{
