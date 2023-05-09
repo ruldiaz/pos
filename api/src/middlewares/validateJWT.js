@@ -14,6 +14,12 @@ const validateJWT = async ( req = request, res = response, next ) => {
     try {
         const { uid } = jwt.verify( token, process.env.SECRETORPRIVATEKEY );
         const user = await User.findById(uid);
+
+        if(!user.status){
+            return res.status(401).json({
+                msg: 'Invalid token, inactive user'
+            })
+        }
       
         req.user = user;
         
