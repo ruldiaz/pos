@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../actions';
+import { Link } from 'react-router-dom';
+import Card from './Card';
 
 export default function Home(){
 
     const dispatch = useDispatch();
-    const allUsers = useSelector( state => state.users );
+    const allUsers = useSelector( state => state.users.users );
 
     useEffect(()=>{
         dispatch( getUsers() );
@@ -15,7 +17,7 @@ export default function Home(){
         e.preventDefault();
         dispatch( getUsers() );
     };
-
+console.log(allUsers)
     return (
         <div>
             <Link to='/user'>Create User</Link>
@@ -32,6 +34,16 @@ export default function Home(){
                     <option value='admin'>Admin Role</option>
                     <option value='sales'>Sales Role</option>
                 </select>
+                {
+                    allUsers && allUsers.map( e => {
+                        console.log(e)
+                        return (
+                            
+                            <Card key={e.uid} name={e.name} role={e.role} />
+                            
+                        );
+                    })
+                }
             </div>
         </div>
     );
