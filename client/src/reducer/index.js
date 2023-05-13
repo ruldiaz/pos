@@ -1,6 +1,7 @@
 
 const initialState = {
-    users: []
+    users: [],
+    items: []
 };
 
 function rootReducer( state = initialState, action ){
@@ -9,6 +10,11 @@ function rootReducer( state = initialState, action ){
             return {
                 ...state,
                 users: action.payload
+            };
+        case 'GET_ITEMS':
+            return {
+                ...state,
+                items: action.payload
             };
         default:
             return state;

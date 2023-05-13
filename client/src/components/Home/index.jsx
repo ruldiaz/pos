@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../actions';
-import { Link } from 'react-router-dom';
+import { getItems, getUsers } from '../../actions';
 import Card from '../Card';
 import Layout from '../Layout';
 
 export default function Home(){
 
     const dispatch = useDispatch();
-    const totalUsers = useSelector( state => state.users.total );
-    const allUsers = useSelector( state => state.users.users );
+    const allItems = useSelector( state => state.items );
 
     useEffect(()=>{
-        dispatch( getUsers() );
+        dispatch( getItems() );
     }, [dispatch])
 
     function handleClick(e){
         e.preventDefault();
         dispatch( getUsers() );
     };
-
+console.log(allItems)
     return (
         <Layout>
             Home 
-            <Card />
+            {
+                allItems?.map( e => (
+                    <Card key={e.id} category={e.category.name} image={e.images[0]} product={e.title} price={e.price} />
+                ))
+            }
         </Layout>
-    )
-}
+    );
+};

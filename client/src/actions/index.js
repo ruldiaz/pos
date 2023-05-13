@@ -9,3 +9,13 @@ export function getUsers(){
         });
     };
 };
+
+export function getItems(){
+    return async function(dispatch){
+        var json = await axios.get('https://api.escuelajs.co/api/v1/products');
+        return dispatch({
+            type: 'GET_ITEMS',
+            payload: json.data
+        });
+    };
+};
