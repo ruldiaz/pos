@@ -7,6 +7,7 @@ import Card from './Card';
 export default function Home(){
 
     const dispatch = useDispatch();
+    const totalUsers = useSelector( state => state.users.total );
     const allUsers = useSelector( state => state.users.users );
 
     useEffect(()=>{
@@ -17,7 +18,7 @@ export default function Home(){
         e.preventDefault();
         dispatch( getUsers() );
     };
-console.log(allUsers)
+
     return (
         <div>
             <Link to='/user'>Create User</Link>
@@ -34,13 +35,12 @@ console.log(allUsers)
                     <option value='admin'>Admin Role</option>
                     <option value='sales'>Sales Role</option>
                 </select>
+                <p>Total Users: {totalUsers}</p>
+                
                 {
-                    allUsers && allUsers.map( e => {
-                        console.log(e)
+                    allUsers?.map( e => {
                         return (
-                            
                             <Card key={e.uid} name={e.name} role={e.role} />
-                            
                         );
                     })
                 }
