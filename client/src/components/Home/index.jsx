@@ -23,6 +23,7 @@ export default function Home(){
     return (
         <Layout>
             Home 
+            <Card />
         </Layout>
     )
 }

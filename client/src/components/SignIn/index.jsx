@@ -1,9 +1,10 @@
 import React from 'react';
+import Layout from '../Layout';
 
 export default function SignIn(){
     return (
-        <div className='bg-red-100'>
+        <Layout>
             Sign In
-        </div>
+        </Layout>
     );
 };

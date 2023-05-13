@@ -1,9 +1,10 @@
 import React from 'react';
+import Layout from '../Layout';
 
 export default function NotFound(){
     return (
-        <div className='bg-red-100'>
+        <Layout>
             Not Found
-        </div>
+        </Layout>
     );
 };
