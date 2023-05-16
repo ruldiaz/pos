@@ -1,7 +1,8 @@
 
 const initialState = {
     users: [],
-    items: []
+    items: [],
+    count: 0
 };
 
 function rootReducer( state = initialState, action ){
@@ -16,6 +17,16 @@ function rootReducer( state = initialState, action ){
                 ...state,
                 items: action.payload
             };
+        case 'ADD_COUNT':
+            return {
+                ...state,
+                count: state.count + 1
+            };
+        case 'SUB_COUNT':
+            return {
+                ...state,
+                count: state.count - 1
+            }
         default:
             return state;
     }

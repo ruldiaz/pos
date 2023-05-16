@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Navbar(){
     const activeStyle =  'underline underline-offset-4';
+    const cartCount = useSelector( state => state.count );
 
     return (
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
@@ -76,7 +78,7 @@ export default function Navbar(){
                     </NavLink>
                 </li>
                 <li>
-                    🛒 0
+                    🛒 {cartCount}
                 </li>
             </ul>
         </nav>
