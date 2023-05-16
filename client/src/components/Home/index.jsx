@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems, getUsers } from '../../actions';
 import Card from '../Card';
+import ProductDetail from '../ProductDetail';
 import Layout from '../Layout';
 
 export default function Home(){
@@ -28,6 +29,7 @@ console.log(allItems)
                 ))
             }
             </div>
+        <ProductDetail />
         </Layout>
     );
 };
