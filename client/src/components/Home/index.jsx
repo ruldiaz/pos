@@ -21,11 +21,13 @@ console.log(allItems)
     return (
         <Layout>
             Home 
+            <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
             {
-                allItems?.map( e => (
-                    <Card key={e.id} category={e.category.name} image={e.images[0]} product={e.title} price={e.price} />
+                allItems?.map( item => (
+                    <Card key={item.id} data={item} />
                 ))
             }
+            </div>
         </Layout>
     );
 };
