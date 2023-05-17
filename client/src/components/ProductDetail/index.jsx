@@ -10,7 +10,7 @@ export default function ProductDetail(){
 
     const productDetail = useSelector( state => state.productToShow );
 
-    console.log('product to show: ', productDetail);
+    //console.log('product to show: ', productDetail);
 
     const dispatch = useDispatch();
 

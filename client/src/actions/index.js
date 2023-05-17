@@ -59,3 +59,17 @@ export function addProductToShoppingcart(payload){
         payload: payload
     });
 };
+
+export function openCheckoutSideMenu(){
+    return ({
+        type: 'OPEN_CHECKOUT_SIDE_MENU',
+        payload: true
+    });
+};
+
+export function closeCheckoutSideMenu(){
+    return ({
+        type: 'CLOSE_CHECKOUT_SIDE_MENU',
+        payload: false
+    });
+};

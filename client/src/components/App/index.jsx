@@ -8,6 +8,7 @@ import NotFound from '../NotFound';
 import SignIn from '../SignIn';
 import LandingPage from '../LandingPage';
 import Navbar from '../Navbar';
+import CheckoutSideMenu from '../CheckoutSideMenu';
 
 function AppRoutes(){
   let routes = useRoutes([
@@ -29,6 +30,7 @@ function App() {
     <BrowserRouter>
       <AppRoutes />
       <Navbar />
+      <CheckoutSideMenu />
     </BrowserRouter>
   );
 };

@@ -5,7 +5,8 @@ const initialState = {
     count: 0, // shopping cart counter on top of home to the right
     isProductDetailOpen: false, // controls open close of detail aside
     productToShow: {}, // shows the detail in the aside element
-    cartProducts: [] // array of shopping cart products
+    cartProducts: [], // array of shopping cart products
+    isCheckoutSideMenuOpen: false
 
 };
 
@@ -47,10 +48,20 @@ function rootReducer( state = initialState, action ){
                 productToShow: action.payload
             };
         case 'ADD_PRODUCT_TO_SHOPPING_CART':
-            console.log(action.payload)
+            //console.log(action.payload)
             return {
                 ...state,
                 cartProducts: [...state.cartProducts, action.payload]
+            };
+        case 'OPEN_CHECKOUT_SIDE_MENU':
+            return {
+                ...state,
+                isCheckoutSideMenuOpen: action.payload
+            };
+        case 'CLOSE_CHECKOUT_SIDE_MENU':
+            return {
+                ...state,
+                isCheckoutSideMenuOpen: action.payload
             };
         default:
             return state;
