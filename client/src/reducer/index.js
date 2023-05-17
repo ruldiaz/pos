@@ -2,7 +2,8 @@
 const initialState = {
     users: [],
     items: [],
-    count: 0
+    count: 0,
+    isProductDetailOpen: false
 };
 
 function rootReducer( state = initialState, action ){
@@ -26,7 +27,17 @@ function rootReducer( state = initialState, action ){
             return {
                 ...state,
                 count: state.count - 1
-            }
+            };
+        case 'OPEN_PRODUCT_DETAIL':
+            return {
+                ...state,
+                isProductDetailOpen: action.payload
+            };
+        case 'CLOSE_PRODUCT_DETAIL':
+            return {
+                ...state,
+                isProductDetailOpen: action.payload
+            };
         default:
             return state;
     }

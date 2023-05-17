@@ -31,3 +31,17 @@ export function subCount(){
         type: 'SUB_COUNT',
     });
 };
+
+export function openProductDetail(){
+    return ({
+        type: 'OPEN_PRODUCT_DETAIL',
+        payload: true
+    });
+};
+
+export function closeProductDetail(){
+    return ({
+        type: 'CLOSE_PRODUCT_DETAIL',
+        payload: false
+    });
+};
