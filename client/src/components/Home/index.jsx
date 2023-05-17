@@ -18,7 +18,7 @@ export default function Home(){
         e.preventDefault();
         dispatch( getUsers() );
     };
-console.log(allItems)
+//console.log(allItems)
     return (
         <Layout>
             Home !

@@ -2,8 +2,9 @@
 const initialState = {
     users: [],
     items: [],
-    count: 0,
-    isProductDetailOpen: false
+    count: 0, // shopping cart counter on top of home to the right
+    isProductDetailOpen: false, // controls open close of detail aside
+    productToShow: {}
 };
 
 function rootReducer( state = initialState, action ){
@@ -37,6 +38,11 @@ function rootReducer( state = initialState, action ){
             return {
                 ...state,
                 isProductDetailOpen: action.payload
+            };
+        case 'SHOW_PRODUCT':
+            return {
+                ...state,
+                productToShow: action.payload
             };
         default:
             return state;

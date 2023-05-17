@@ -45,3 +45,10 @@ export function closeProductDetail(){
         payload: false
     });
 };
+
+export function showProduct(payload){
+    return ({
+        type: 'SHOW_PRODUCT',
+        payload: payload
+    });
+};
