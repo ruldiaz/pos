@@ -28,7 +28,7 @@ export default function ProductDetail(){
                 </div>
             </div>
             <figure className='px-6'>
-                <img className='w-full h-full rounded-lg' src={productDetail.images[0]} alt={productDetail.title} />
+                <img className='w-full h-full rounded-lg' src={productDetail.images} alt={productDetail.title} />
             </figure>
             <p className='flex flex-col p-6'>
                 <span className='font-medium text-2xl mb-2'>$ {productDetail.price}</span>

@@ -52,3 +52,10 @@ export function showProduct(payload){
         payload: payload
     });
 };
+
+export function addProductToShoppingcart(payload){
+    return ({
+        type: 'ADD_PRODUCT_TO_SHOPPING_CART',
+        payload: payload
+    });
+};

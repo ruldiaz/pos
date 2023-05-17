@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
-import { addCount, openProductDetail, showProduct } from '../../actions';
+import { addCount, addProductToShoppingcart, openProductDetail, showProduct } from '../../actions';
 import { useDispatch } from 'react-redux';
 
 export default function Card( data ){
@@ -9,6 +9,7 @@ export default function Card( data ){
     function handleAddClick(e){
         e.preventDefault();
         dispatch( addCount() );
+        dispatch( addProductToShoppingcart( data.data ) );
     }
 
     function handleShowProductDetail(e){

@@ -4,7 +4,9 @@ const initialState = {
     items: [],
     count: 0, // shopping cart counter on top of home to the right
     isProductDetailOpen: false, // controls open close of detail aside
-    productToShow: {}
+    productToShow: {}, // shows the detail in the aside element
+    cartProducts: [] // array of shopping cart products
+
 };
 
 function rootReducer( state = initialState, action ){
@@ -43,6 +45,12 @@ function rootReducer( state = initialState, action ){
             return {
                 ...state,
                 productToShow: action.payload
+            };
+        case 'ADD_PRODUCT_TO_SHOPPING_CART':
+            console.log(action.payload)
+            return {
+                ...state,
+                cartProducts: [...state.cartProducts, action.payload]
             };
         default:
             return state;
