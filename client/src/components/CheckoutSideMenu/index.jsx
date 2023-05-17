@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { closeCheckoutSideMenu } from '../../actions';
 import './styles.css';
+import OrderCard from '../OrderCard';
 
 export default function CheckoutSideMenu(){
 
     const isCheckoutSideMenuOpen = useSelector( state => state.isCheckoutSideMenuOpen );
+
+    const cartProducts = useSelector( state => state.cartProducts );
 
     const dispatch = useDispatch();
 
@@ -22,6 +25,17 @@ export default function CheckoutSideMenu(){
                 <div onClick={handleCloseCheckoutSideMenu}>
                     <XMarkIcon className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>
                 </div>
+            </div>
+            <div className='px-6 overflow-y-scroll'>
+                {
+                    cartProducts?.map( product => {
+                        return <OrderCard 
+                        key={product.id}
+                        title={product.title} 
+                        imageUrl={product.images} 
+                        price={product.price} />
+                    })
+                }
             </div>
         </aside>
     );
