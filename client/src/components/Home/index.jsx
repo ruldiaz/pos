@@ -21,7 +21,7 @@ export default function Home(){
 console.log(allItems)
     return (
         <Layout>
-            Home 
+            Home !
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
             {
                 allItems?.map( item => (
