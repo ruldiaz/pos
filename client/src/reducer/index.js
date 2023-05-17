@@ -48,10 +48,17 @@ function rootReducer( state = initialState, action ){
                 productToShow: action.payload
             };
         case 'ADD_PRODUCT_TO_SHOPPING_CART':
-            //console.log(action.payload)
+            console.log('payload',action.payload)
             return {
                 ...state,
                 cartProducts: [...state.cartProducts, action.payload]
+            };
+        case 'DELETE_PRODUCT_FROM_SHOPPING_CART':
+            const productId = action.payload;
+            const updatedCart = state.cartProducts.filter( product => product.id !== productId);
+            return {
+                ...state,
+                cartProducts: updatedCart
             };
         case 'OPEN_CHECKOUT_SIDE_MENU':
             return {

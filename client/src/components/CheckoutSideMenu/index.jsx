@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { closeCheckoutSideMenu } from '../../actions';
+import { closeCheckoutSideMenu, deleteProductFromShoppingCart } from '../../actions';
 import './styles.css';
 import OrderCard from '../OrderCard';
 
@@ -18,6 +18,10 @@ export default function CheckoutSideMenu(){
         dispatch( closeCheckoutSideMenu() );
     }
 
+    function handleDelete(id){
+        dispatch( deleteProductFromShoppingCart( id ));
+    }
+
     return (
         <aside className={`${isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
             <div className='flex justify-between items-center p-6'>
@@ -28,12 +32,15 @@ export default function CheckoutSideMenu(){
             </div>
             <div className='px-6 overflow-y-scroll'>
                 {
-                    cartProducts?.map( product => {
+                    cartProducts?.map( (product, index) => {
                         return <OrderCard 
-                        key={product.id}
+                        id={product.id}
+                        key={index}
                         title={product.title} 
                         imageUrl={product.images} 
-                        price={product.price} />
+                        price={product.price}
+                        handleDelete={handleDelete}
+                         />
                     })
                 }
             </div>

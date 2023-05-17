@@ -60,6 +60,13 @@ export function addProductToShoppingcart(payload){
     });
 };
 
+export function deleteProductFromShoppingCart(payload){
+    return ({
+        type: 'DELETE_PRODUCT_FROM_SHOPPING_CART',
+        payload: payload
+    });
+};
+
 export function openCheckoutSideMenu(){
     return ({
         type: 'OPEN_CHECKOUT_SIDE_MENU',
