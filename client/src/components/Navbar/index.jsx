@@ -1,4 +1,5 @@
 import React from 'react';
+import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -77,8 +78,9 @@ export default function Navbar(){
                         Sign In
                     </NavLink>
                 </li>
-                <li>
-                    🛒 {cartCount}
+                <li className='flex'>
+                    <ShoppingCartIcon className="h-6 w-6 text-black"></ShoppingCartIcon>
+                    <div>{cartCount}</div> 
                 </li>
             </ul>
         </nav>
