@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { closeCheckoutSideMenu, deleteProductFromShoppingCart } from '../../actions';
+import { checkoutOrder, clearShoppingCart, closeCheckoutSideMenu, deleteProductFromShoppingCart } from '../../actions';
 import './styles.css';
 import OrderCard from '../OrderCard';
 import { totalPrice } from '../../utils';   
@@ -21,6 +21,24 @@ export default function CheckoutSideMenu(){
 
     function handleDelete(id){
         dispatch( deleteProductFromShoppingCart( id ));
+    }
+
+    function handleCheckout(){
+        const currentDate = new Date();
+        const day = currentDate.getDate();
+        const month = currentDate.getMonth()+1;
+        const year = currentDate.getFullYear();
+        const formattedDate = day + '/' + month + '/' + year;
+
+        const orderToAdd = {
+            date: formattedDate,
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice: totalPrice(cartProducts)
+        };
+
+        dispatch( checkoutOrder( orderToAdd ) );
+        dispatch( clearShoppingCart() );
     }
 
     return (
@@ -50,6 +68,7 @@ export default function CheckoutSideMenu(){
                     <span className='font-light'>Total: </span>
                     <span className='font-medium text-2xl'>$ {totalPrice(cartProducts).toLocaleString('en-US')}</span>   
                 </p>
+                <button onClick={handleCheckout} >Checkout</button>
             </div>
         </aside>
     );

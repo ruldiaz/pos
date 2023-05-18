@@ -80,3 +80,16 @@ export function closeCheckoutSideMenu(){
         payload: false
     });
 };
+
+export function checkoutOrder(payload){
+    return ({
+        type: 'CHECKOUT_ORDER',
+        payload: payload
+    });
+};
+
+export function clearShoppingCart(){
+    return ({
+        type: 'CLEAR_SHOPPING_CART'
+    });
+};

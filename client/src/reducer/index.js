@@ -6,8 +6,8 @@ const initialState = {
     isProductDetailOpen: false, // controls open close of detail aside
     productToShow: {}, // shows the detail in the aside element
     cartProducts: [], // array of shopping cart products
-    isCheckoutSideMenuOpen: false
-
+    isCheckoutSideMenuOpen: false, // controls the display of the side cart
+    order: []
 };
 
 function rootReducer( state = initialState, action ){
@@ -70,6 +70,16 @@ function rootReducer( state = initialState, action ){
                 ...state,
                 isCheckoutSideMenuOpen: action.payload
             };
+        case 'CHECKOUT_ORDER':
+            return {
+                ...state,
+                order: [...state.order, action.payload]
+            }
+        case 'CLEAR_SHOPPING_CART':
+            return {
+                ...state,
+                cartProducts: []
+            }
         default:
             return state;
     }
