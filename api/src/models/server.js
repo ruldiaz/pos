@@ -11,6 +11,7 @@ class Server {
         this.PORT = process.env.PORT || 3001;
         this.usersPath = '/api/users';
         this.authPath = '/api/auth';
+        
 
         // Connect to DB
         this.connectDb();
@@ -29,6 +30,13 @@ class Server {
     middlewares(){
         // cors
         this.app.use( cors() );
+        this.app.use((req, res, next) => {
+            res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+            res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+            next();
+          });
 
         // parse and read of body
         this.app.use( express.json() );
@@ -40,6 +48,7 @@ class Server {
     routes(){
         this.app.use(this.authPath, authRouter);
         this.app.use(this.usersPath, usersRouter);
+        
     }
 
     listen(){
