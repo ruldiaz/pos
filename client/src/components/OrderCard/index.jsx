@@ -5,6 +5,12 @@ export default function OrderCard(props){
 
     const { id, handleDelete, title, imageUrl, price } = props;
 
+    let renderXMarkIcon;
+    
+    if(handleDelete){
+        renderXMarkIcon = <XMarkIcon onClick={()=>handleDelete(id)} className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>;
+    }
+
     return (
         <div className='flex justify-between items-center mb-3'>
             <div className='flex items-center gap-2'>
@@ -15,7 +21,7 @@ export default function OrderCard(props){
             </div>
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>{price}</p>
-                <XMarkIcon onClick={()=>handleDelete(id)} className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>
+                {renderXMarkIcon}
             </div>
         </div>
     );

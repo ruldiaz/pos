@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { checkoutOrder, clearShoppingCart, closeCheckoutSideMenu, deleteProductFromShoppingCart } from '../../actions';
 import './styles.css';
 import OrderCard from '../OrderCard';
 import { totalPrice } from '../../utils';   
+
 
 export default function CheckoutSideMenu(){
 
@@ -49,7 +51,7 @@ export default function CheckoutSideMenu(){
                     <XMarkIcon className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>
                 </div>
             </div>
-            <div className='px-6 overflow-y-scroll'>
+            <div className='px-6 overflow-y-scroll flex-1'>
                 {
                     cartProducts?.map( (product, index) => {
                         return <OrderCard 
@@ -63,12 +65,15 @@ export default function CheckoutSideMenu(){
                     })
                 }
             </div>
-            <div className='px-6'>
-                <p className='flex justify-between items-center'>
+            <div className='px-6 mb-6'>
+                <p className='flex justify-between items-center mb-2'>
                     <span className='font-light'>Total: </span>
                     <span className='font-medium text-2xl'>$ {totalPrice(cartProducts).toLocaleString('en-US')}</span>   
                 </p>
-                <button onClick={handleCheckout} >Checkout</button>
+                <Link to='/my-orders/last'>
+                    <button className='bg-black py-3 text-white w-full rounded-lg' onClick={handleCheckout} >Checkout</button>                
+                </Link>
+
             </div>
         </aside>
     );
