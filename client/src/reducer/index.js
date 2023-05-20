@@ -2,6 +2,7 @@
 const initialState = {
     users: [],
     items: [],
+    allItems: [], // copy of items
     count: 0, // shopping cart counter on top of home to the right
     isProductDetailOpen: false, // controls open close of detail aside
     productToShow: {}, // shows the detail in the aside element
@@ -20,7 +21,8 @@ function rootReducer( state = initialState, action ){
         case 'GET_ITEMS':
             return {
                 ...state,
-                items: action.payload
+                items: action.payload,
+                allItems: action.payload
             };
         case 'ADD_COUNT':
             return {
@@ -74,12 +76,24 @@ function rootReducer( state = initialState, action ){
             return {
                 ...state,
                 order: [...state.order, action.payload]
-            }
+            };
         case 'CLEAR_SHOPPING_CART':
             return {
                 ...state,
                 cartProducts: []
-            }
+            };
+        case 'FILTER_BY_TITLE':
+            console.log('reducer payload',action.payload)
+            const items = state.allItems?.filter( item => {
+                return item.title.toLowerCase().includes(action.payload.toLowerCase())} );
+            console.log({items})
+            // if(!filteredItems){
+            //     filteredItems = allItems
+            // }
+            return {
+                ...state,
+                items: [...items]
+            };
         default:
             return state;
     }

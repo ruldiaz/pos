@@ -93,3 +93,11 @@ export function clearShoppingCart(){
         type: 'CLEAR_SHOPPING_CART'
     });
 };
+
+export function filterByTitle(payload){
+    console.log({payload})
+    return ({
+        type: 'FILTER_BY_TITLE',
+        payload: payload
+    });
+};
