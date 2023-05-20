@@ -83,10 +83,10 @@ function rootReducer( state = initialState, action ){
                 cartProducts: []
             };
         case 'FILTER_BY_TITLE':
-            console.log('reducer payload',action.payload)
+            // console.log('reducer payload',action.payload)
             const items = state.allItems?.filter( item => {
                 return item.title.toLowerCase().includes(action.payload.toLowerCase())} );
-            console.log({items})
+            // console.log({items})
             // if(!filteredItems){
             //     filteredItems = allItems
             // }

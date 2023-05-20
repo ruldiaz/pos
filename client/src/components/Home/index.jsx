@@ -12,7 +12,21 @@ export default function Home(){
 
     const dispatch = useDispatch();
     const allItems = useSelector( state => state.items );
-console.log({allItems})
+
+    function renderView(){
+        if(allItems?.length === 0){
+            return (
+            <div className='flex items-center justify-center'>Product not found, try again...</div>
+            )
+        }else{
+            return (
+                allItems?.map( (item, index) => (
+                    <Card key={index} data={item} />
+                ))
+            );
+        }
+    }
+
     useEffect(()=>{
         dispatch( getItems() );
     }, [dispatch])
@@ -50,9 +64,7 @@ console.log({allItems})
                 <button type='submit' onClick={handleSubmit} >Search</button>
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
             {
-                allItems?.map( (item, index) => (
-                    <Card key={index} data={item} />
-                ))
+                renderView()
             }
             </div>
         <ProductDetail />
