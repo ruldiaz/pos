@@ -21,7 +21,10 @@ export default function Home(){
 //console.log(allItems)
     return (
         <Layout>
-            Home !
+            <div className='flex items-center justify-center relative w-80 mb-4'>
+                <h1 className='font-medium text-xl'>Exclusive Products</h1>
+            </div>
+            <input type="text" placeholder='Search a product...' />
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
             {
                 allItems?.map( item => (
