@@ -95,9 +95,17 @@ export function clearShoppingCart(){
 };
 
 export function filterByTitle(payload){
-    console.log({payload})
+    // console.log({payload})
     return ({
         type: 'FILTER_BY_TITLE',
+        payload: payload
+    });
+};
+
+export function filterByCategory( payload ){
+    // console.log('action',{payload});
+    return ({
+        type: 'FILTER_BY_CATEGORY',
         payload: payload
     });
 };
