@@ -85,7 +85,7 @@ function rootReducer( state = initialState, action ){
         case 'FILTER_BY_TITLE':
             // console.log('reducer payload',action.payload)
             const items = state.allItems?.filter( item => {
-                return item.title.toLowerCase().includes(action.payload.toLowerCase())} );
+                return item.title.toLowerCase().includes(action.payload.toLowerCase())} )
             // console.log({items})
             // if(!filteredItems){
             //     filteredItems = allItems
@@ -94,6 +94,16 @@ function rootReducer( state = initialState, action ){
                 ...state,
                 items: [...items]
             };
+        case 'FILTER_BY_CATEGORY':
+           // console.log('reducer', action.payload)
+            const items2 = action.payload === 'all' ? state.allItems : state.allItems?.filter( item => {
+                //console.log(item.category.name.toLowerCase())
+                return item.category.name.toLowerCase().includes(action.payload);
+            })
+            return {
+                ...state,
+                items: [...items2]
+            }
         default:
             return state;
     }
