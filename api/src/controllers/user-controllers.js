@@ -57,7 +57,7 @@ const usersPostController = async (req, res = response )=>{
 
 const usersDeleteController = async (req, res)=>{
 
-    const { id } = req.params;
+    const { id } = req.params; // get the id so user can be deleted
 
     const deletedUser = await User.findByIdAndUpdate( id, { status: false });
 
